@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* About Us Styles */
+        .about-us {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .about-us h1 {
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+
+        .about-us h2 {
+            color: #333;
+            margin: 20px 0 10px;
+        }
+
+        .about-us ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .about-us li {
+            margin-bottom: 10px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #1565c0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h2>Help Center</h2>
+            <div class="nav-item active" onclick="showContent('about')">
+                <i>ℹ️</i> About Us
+            </div>
+            <div class="nav-item" onclick="showContent('videos')">
+                <i>📹</i> Videos
+            </div>
+            <div class="nav-item" onclick="showContent('documents')">
+                <i>📄</i> Documents
+            </div>
+            <div class="nav-item" onclick="showContent('presentations')">
+                <i>📊</i> Presentations
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="content-area"></div>
+        </div>
+    </div>
+
+    <script>
+        // Content data
+        const content = {
+            videos: [
+                { title: 'Admin Tutorial', url: 'https://www.youtube.com/embed/vecrsHK-RZE?si=1N6h2HBpjDrRX5H8' },
+                { title: 'Nurse Tutorial', url: 'https://www.youtube.com/embed/DmdOqg9dt_4?si=9xtFlivlOY24cWK1' },
+                { title: 'Doctor Tutorial', url: 'https://www.youtube.com/embed/HwTEPlbyAmQ?si=Uf3McUVzSXXBYVbI' },
+                { title: 'Patient Tutorial', url: 'https://www.youtube.com/embed/JVd_-5TtmZg?si=RRz8Gze75ZRKZNJO' }
+            ],
+            documents: [
+                { title: 'Admin Manual', type: 'PDF', url: 'https://ik.imagekit.io/aravindemr/Admin/Documents/Admin.pdf?updatedAt=1738263492032' },
+                { title: 'Doctor Manual', type: 'PDF', url: 'https://drive.google.com/file/d/5678/view?usp=sharing' },
+                { title: 'Nurse Manual', type: 'PDF', url: 'https://drive.google.com/file/d/9012/view?usp=sharing' },
+                { title: 'Patient Manual', type: 'PDF', url: 'https://drive.google.com/file/d/3456/view?usp=sharing' }
+            ],
+            presentations: [
+                { title: 'Admin PPT', type: 'PPT', url: 'https://ik.imagekit.io/aravindemr/Admin/PPT/Admin.pdf?updatedAt=1738263788263' },
+                
+            ]
+        };
+
+        function showContent(type) {
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Clear and update content area
+            const contentArea = document.getElementById('content-area');
+            contentArea.innerHTML = '';
+            
+            if (type === 'about') {
+                contentArea.innerHTML = `
+                    <div class="about-us">
+                        <h1>Electronic Medical Records (EMR) System</h1>
+                        <p>The Electronic Medical Records (EMR) system is a digital platform used by healthcare professionals to manage and store patient health records. It replaces traditional paper-based records with an electronic format, making it easier for healthcare providers to access, update, and share patient information.</p>
+                        
+                        <h2>Key Features of the EMR System:</h2>
+                        <ul>
+                            <li><strong>Patient Information Management</strong>
+                                <ul>
+                                    <li>The system stores comprehensive patient details, including personal information, medical history, diagnosis, prescriptions, allergies, and vaccination records.</li>
+                                    <li>Healthcare providers can easily view and update this information, ensuring accurate and up-to-date patient records.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Appointments and Scheduling</strong>
+                                <ul>
+                                    <li>The EMR system helps manage appointments by scheduling visits with doctors, nurses, or specialists.</li>
+                                    <li>Patients can book appointments, and the system sends reminders to both patients and healthcare providers.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Medical History Tracking</strong>
+                                <ul>
+                                    <li>All previous medical visits, diagnoses, treatments, lab results, and prescription histories are logged in the system.</li>
+                                    <li>Healthcare professionals can easily track a patient's medical journey and monitor any ongoing treatments.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Prescription Management</strong>
+                                <ul>
+                                    <li>Doctors can prescribe medications electronically, reducing errors and improving efficiency.</li>
+                                    <li>The system tracks prescribed medications and ensures patients receive the right dosage and medication.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Laboratory and Test Results</strong>
+                                <ul>
+                                    <li>Test results, such as blood tests, radiology reports, and imaging, are stored within the EMR.</li>
+                                    <li>This allows doctors to access these results quickly and integrate them into a patient's treatment plan.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Role-Based Access</strong>
+                                <ul>
+                                    <li>The system has different levels of access based on user roles (e.g., doctor, nurse, admin, and patient).</li>
+                                    <li>Each user can access only the relevant information based on their role, ensuring privacy and security.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Communication Tools</strong>
+                                <ul>
+                                    <li>The EMR system allows doctors, nurses, and other healthcare providers to communicate with each other regarding patient care.</li>
+                                    <li>It may also include features for patients to contact their healthcare providers for queries or follow-ups.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Patient Portal</strong>
+                                <ul>
+                                    <li>Patients have access to their own medical records through a portal.</li>
+                                    <li>They can review their diagnoses, lab results, and medications.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Data Security and Compliance</strong>
+                                <ul>
+                                    <li>The system ensures that all patient data is kept confidential and complies with healthcare regulations.</li>
+                                    <li>Provides a secure environment for storing sensitive health information.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Report Generation</strong>
+                                <ul>
+                                    <li>Healthcare providers can generate various reports, such as patient progress reports, lab results, or treatment summaries.</li>
+                                    <li>These reports are used for ongoing care, audits, and legal documentation.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `;
+                return;
+            }
+
+            // Create new content grid
+            const grid = document.createElement('div');
+            grid.className = 'content-grid';
+
+            if (type === 'videos') {
+                content.videos.forEach(video => {
+                    grid.innerHTML += `
+                        <div class="card">
+                            <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
+                            <h3>${video.title}</h3>
+                        </div>
+                    `;
+                });
+            } else {
+                content[type].forEach(item => {
+                    grid.innerHTML += `
+                        <div class="card">
+                            <div class="icon">${type === 'documents' ? '📄' : '📊'}</div>
+                            <h3>${item.title}</h3>
+                            <a href="${item.url}" class="download-btn" target="_blank">Download ${item.type}</a>
+                        </div>
+                    `;
+                });
+            }
+
+            contentArea.appendChild(grid);
+        }
+
+        // Show about section by default
+        showContent('about');
+    </script>
+</body>
+</html>
