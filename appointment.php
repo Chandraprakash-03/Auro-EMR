@@ -192,7 +192,7 @@ if(isset($_GET['editid']))
 
                                         <option value="">Select Status</option>
                                         <?php
-                        $arr = array("Active","Inactive");
+                        $arr = array("Pending","Approved");
                         foreach($arr as $val)
                         {
                            if($val == $rsedit['status'])
