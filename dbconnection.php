@@ -25,9 +25,10 @@ mysqli_options($con, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 // Establish the connection
 if (!mysqli_real_connect($con, $servername, $username, $password, $database, $port, null, MYSQLI_CLIENT_SSL)) {
     die("Failed to connect to MySQL: " . mysqli_connect_error());
-}else{
-    echo("Connected Successfully");
 }
+// else{
+//     echo("Connected Successfully");
+// }
 
 // Check the connection
 if ($con->connect_errno) {
