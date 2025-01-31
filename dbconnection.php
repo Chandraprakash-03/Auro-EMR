@@ -1,9 +1,14 @@
 <?php
-$servername = "mysql-3b7bbd86-chandraprakashcp003-9888.g.aivencloud.com";
-$username = "avnadmin";
-$password = "AVNS_6yhL-Ak_-vLcsMcc7fu";
-$database = "defaultdb";
-$port = 28600;
+require __DIR__ . '/vendor/autoload.php'; 
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load(); // Load environment variables from .env
+
+$servername = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USERNAME'];
+$password = $_ENV['DB_PASSWORD'];
+$database = $_ENV['DB_DATABASE'];
+$port = $_ENV['DB_PORT'];
 
 // SSL configuration (optional, depends on provider)
 $ssl_options = [
