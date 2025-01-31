@@ -12,7 +12,7 @@ $tim = date("H:i:s");
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Aravind Eye Hospital - EMR</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets\images\logo2.png">
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="assets/plugins/morrisjs/morris.css" rel="stylesheet" />

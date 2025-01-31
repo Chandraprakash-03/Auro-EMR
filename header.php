@@ -14,8 +14,7 @@ $tim = date("H:i:s");
 <title>Aravind Eye Hospital - EMR</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="assets\images\logo2.png">
 
 <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
 <link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />

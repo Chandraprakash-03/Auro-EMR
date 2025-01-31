@@ -22,11 +22,11 @@ if(isset($_POST['submit']))
   <div id="container">
     <h6>Our Address</h6>
     <p>
-ProMed, Kerala<br />
+Aravind Eye Care System, Madurai<br />
 
-<strong>tel</strong>:080 65110488<br />
+<strong>tel</strong>:0452 876543210<br />
 
-<strong>Email ID</strong>: ohms@gmail.com</p>
+<strong>Email ID</strong>: aravind@gmail.com</p>
 
         <h6>Contact Us by entering following information</h6>
             <form action="" method="post">
